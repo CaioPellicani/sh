@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo apt remove firefox -y
+
+sudo apt autoremove
