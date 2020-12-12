@@ -1,0 +1,17 @@
+#!/bin/sh
+pack="code --install-extension"
+installed=$(dpkg -s code | grep "Status: install ok installed")
+
+mkdir temp
+cd temp
+if [ "$installed" = "" ]; then
+    wget https://go.microsoft.com/fwlink/?LinkID=760868
+    sudo dpkg -i *
+fi 
+
+${pack} MS-CEINTL.vscode-language-pack-pt-BR
+${pack} ms-vscode.cpptools
+${pack} mikhail-arkhipov.r
+
+cd ..
+rm temp -r

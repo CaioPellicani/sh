@@ -1,9 +1,0 @@
-#!/bin/sh
-
-mkdir temp
-cd temp
-wget https://go.microsoft.com/fwlink/?LinkID=760868
-sudo dpkg -i *
-code --install-extension MS-CEINTL.vscode-language-pack-pt-BR
-cd ..
-rm temp -r

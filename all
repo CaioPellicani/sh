@@ -1,7 +1,13 @@
 #!/bin/sh
 
+
 ./fifoxRemove
 ./atualizar
 ./braveInstall
 ./vsCodeInstall
 ./rInstall
+./arduinoInstall
+
+echo reiniciando
+shutdown -r now
+
