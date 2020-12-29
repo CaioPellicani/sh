@@ -1,12 +1,15 @@
 #!/bin/sh
 
-
 ./fifoxRemove
 ./atualizar
 ./braveInstall
-./vsCodeInstall
-./rInstall
-./arduinoInstall
+./chromeInstall
+#./vsCodeInstall
+#./rInstall
+#./arduinoInstall
+
+sudo apt autoclean -y
+sudo apt autoremove -y
 
 echo reiniciando
 shutdown -r now
