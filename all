@@ -1,11 +1,12 @@
 #!/bin/sh
 
 ./fifoxRemove
+./msfontsInstall
 ./atualizar
 ./braveInstall
 ./chromeInstall
 #./vsCodeInstall
-#./rInstall
+./rInstall
 #./arduinoInstall
 
 sudo apt autoclean -y
