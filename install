@@ -1,22 +1,32 @@
 #!/bin/bash
 
-./fifoxRemove
-./msfontsInstall
-./atualizar
-./braveInstall
-./chromeInstall
+#./fifoxRemove
+#./atualizar
+#./msfontsInstall
+#./braveInstall
+#./chromeInstall
 
 for arg in $@
 do 
     case $arg in 
 	    "dev")
             echo "Modo Dev"
-		    ./vsCodeInstall
-            ./arduinoInstall
+#		    ./codeInstall
+#           ./arduinoInstall
 		    ;;
 	    "r")
 		    echo "Modo R"
-            ./rInstall
+ #           ./rInstall
 		    ;;
+		*)
+			echo "Comando $arg não encontrado"
     esac
 done
+
+echo "Deseja reiniciar?(S/N)"
+read result
+
+if [ "$result" == "s" ] || [ "$result" == "S" ]
+then
+	shutdown -r now
+fi
