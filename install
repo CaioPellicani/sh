@@ -1,0 +1,22 @@
+#!/bin/bash
+
+./fifoxRemove
+./msfontsInstall
+./atualizar
+./braveInstall
+./chromeInstall
+
+for arg in $@
+do 
+    case $arg in 
+	    "dev")
+            echo "Modo Dev"
+		    ./vsCodeInstall
+            ./arduinoInstall
+		    ;;
+	    "r")
+		    echo "Modo R"
+            ./rInstall
+		    ;;
+    esac
+done

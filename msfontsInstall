@@ -1,3 +1,4 @@
 #!/bin/sh
 
-sudo apt install ttf-ms-fonts -y
+sudo apt install ttf-mscorefonts-installer -y
+
