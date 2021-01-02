@@ -1,22 +1,22 @@
 #!/bin/bash
 
-#./fifoxRemove
-#./atualizar
-#./msfontsInstall
-#./braveInstall
-#./chromeInstall
+./fifoxRemove
+./atualizar
+./msfontsInstall
+./braveInstall
+./chromeInstall
 
 for arg in $@
 do 
     case $arg in 
 	    "dev")
             echo "Modo Dev"
-#		    ./codeInstall
-#           ./arduinoInstall
+		    ./codeInstall
+           ./arduinoInstall
 		    ;;
 	    "r")
 		    echo "Modo R"
- #           ./rInstall
+           ./rInstall
 		    ;;
 		*)
 			echo "Comando $arg não encontrado"
