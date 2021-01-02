@@ -12,7 +12,7 @@ do
 	    "dev")
             echo "Modo Dev"
 		    ./codeInstall
-           ./arduinoInstall
+			./arduinoInstall
 		    ;;
 	    "r")
 		    echo "Modo R"
@@ -26,7 +26,7 @@ done
 echo "Deseja reiniciar?(S/N)"
 read result
 
-if [ "$result" == "s" ] || [ "$result" == "S" ]
+if [ "${result^^}" == "S" ]
 then
 	shutdown -r now
 fi
