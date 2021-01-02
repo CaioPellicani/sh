@@ -23,6 +23,9 @@ do
     esac
 done
 
+sudo apt autoclean
+sudo apt autoremove
+
 echo "Deseja reiniciar?(S/N)"
 read result
 
