@@ -8,7 +8,7 @@ if [ "$installed" = "" ]; then
     wget https://go.microsoft.com/fwlink/?LinkID=760868
     sudo dpkg -i *
 else
-	echo "Programa Já Foi Instalado"
+	echo "$0: Programa Já Foi Instalado"
 fi 
 
 ${pack} MS-CEINTL.vscode-language-pack-pt-BR

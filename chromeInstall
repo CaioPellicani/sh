@@ -8,7 +8,7 @@ if [ "$installed" = "" ]; then
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb
 else
-	echo "Programa Já Foi Instalado"
+	echo "$0: Programa Já Foi Instalado"
 fi
 
 

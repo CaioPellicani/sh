@@ -1,0 +1,20 @@
+#!/bin/sh
+
+installed=$(dpkg -s numlockx | grep "Status: install ok installed")
+arquivo=$(sudo ls /etc/lightdm | grep slick-greeter.conf)
+
+if [ "$installed" = "" ]; then		
+	sudo apt install numlockx -y
+else
+	echo "$0: Programa Já Foi Instalado"
+fi
+
+if [ "$arquivo" = "" ]; then
+	echo "[Greeter]" > temp
+    echo "activate-numlock=true" >> temp 
+	sudo mv temp /etc/lightdm/slick-greeter.conf -f
+else
+	echo "$0: Arquivo Já Foi Configurado"
+fi
+
+

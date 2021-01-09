@@ -9,5 +9,5 @@ if [ "$installed" = "" ]; then
     sudo apt update
     sudo apt install brave-browser -y   
 else
-	echo "Programa Já Foi Instalado"
+	echo "$0: Programa Já Foi Instalado"
 fi
