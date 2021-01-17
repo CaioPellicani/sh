@@ -1,3 +1,34 @@
 #!/bin/sh
 
-sudo apt install arduino -y
+ARQUIVO="arduino-1.8.13"
+
+installed=$(dpkg -s arduino | grep "Status: install ok installed")
+
+mkdir temp
+cd temp
+if [ "$installed" = "" ]; then
+
+    wget https://downloads.arduino.cc/"$ARQUIVO"-linux64.tar.xz
+
+    tar -xf "$ARQUIVO"-linux64.tar.xz
+
+    mv "$ARQUIVO" "$HOME/$ARQUIVO"
+
+    cd "$HOME/$ARQUIVO"
+
+    ./install.sh
+
+    curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+
+    export PATH=$PATH:$HOME/$ARQUIVO/bin
+
+    arduino-cli lib install "RTClib"
+else
+	echo "$0: Programa Já Foi Instalado"
+fi 
+
+cd ..
+rm temp -r
+
+
+
