@@ -16,7 +16,7 @@ if [ "$installed" = "" ]; then
 
     cd "$HOME/$ARQUIVO"
 
-    ./install.sh
+    sudo ./install.sh
 
     curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
