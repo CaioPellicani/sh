@@ -19,10 +19,8 @@ do
 		    echo "Modo R"
            ./rInstall
 		    ;;
-        "snap")
-            echo "Modo Snap"
-            ./snapInstall
-            ;;
+
+	
 		*)
 			echo "Comando $arg não encontrado"
     esac
