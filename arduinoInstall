@@ -23,6 +23,8 @@ if [ "$installed" = "" ]; then
     export PATH=$PATH:$HOME/$ARQUIVO/bin
 
     arduino-cli lib install "RTClib"
+    arduino-cli update
+    arduino-cli upgrade
 else
 	echo "$0: Programa Já Foi Instalado"
 fi 
