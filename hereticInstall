@@ -1,15 +1,25 @@
 #!/bin/sh
 ATUAL=$(pwd)
-installed=$(dpkg -s gzdoom | grep "Status: install ok installed")
+PAC=lzdoom
+installed=$(sudo dpkg -s PAC | grep "Status: install ok installed")
 
 TEMP=$(mktemp --directory)
 cd $TEMP
 
 if [ "$installed" = "" ]; then
-    wget https://github.com/coelckers/gzdoom/releases/download/g4.5.0/gzdoom_4.5.0_amd64.deb
-    sudo dpkg -i *
     wget https://github.com/Akbar30Bill/DOOM_wads/raw/master/heretic.wad
-    mv heretic.wad ~/.config/gzdoom/heretic.wad
+    if [ "${PAC}" = "gzdoom"]; then
+        wget https://github.com/coelckers/gzdoom/releases/download/g4.5.0/gzdoom_4.5.0_amd64.deb
+        sudo dpkg -i gzdoom_4.5.0_amd64.deb
+        gzdoom    
+        mv heretic.wad ~/.config/gzdoom/heretic.wad
+    fi
+    if [ "${PAC}" = "lzdoom"]; then
+        wget https://github.com/drfrag666/gzdoom/releases/download/3.87b/lzdoom_3.87b_amd64.deb
+        sudo dpkg -i lzdoom_3.87b_amd64.deb
+        lzdoom
+        mv heretic.wad ~/.config/lzdoom/heretic.wad
+    fi
 else
 	echo "$0: Programa Já Foi Instalado"
 fi 
