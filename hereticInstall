@@ -1,8 +1,9 @@
 #!/bin/sh
-ATUAL=$(pwd)
-PAC=lzdoom
+
+PAC="zdoom"
 installed=$(sudo dpkg -s PAC | grep "Status: install ok installed")
 
+ATUAL=$(pwd)
 TEMP=$(mktemp --directory)
 cd $TEMP
 
@@ -15,7 +16,7 @@ if [ "$installed" = "" ]; then
         mv heretic.wad ~/.config/gzdoom/heretic.wad
     fi
     if [ "${PAC}" = "lzdoom"]; then
-        wget https://github.com/drfrag666/gzdoom/releases/download/3.87b/lzdoom_3.87b_amd64.deb
+        wget https://github.com/coelckers/gzdoom/releases/download/g4.3.3/gzdoom_4.3.3_amd64.deb
         sudo dpkg -i lzdoom_3.87b_amd64.deb
         lzdoom
         mv heretic.wad ~/.config/lzdoom/heretic.wad

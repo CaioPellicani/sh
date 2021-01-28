@@ -4,15 +4,17 @@ ARQUIVO="arduino-1.8.13"
 
 installed=$(dpkg -s arduino | grep "Status: install ok installed")
 
-mkdir temp
-cd temp
+ATUAL=$(pwd)
+TEMP=$(mktemp --directory)
+cd $TEMP
+
 if [ "$installed" = "" ]; then
 
     wget https://downloads.arduino.cc/"$ARQUIVO"-linux64.tar.xz
 
-    tar -xf "$ARQUIVO"-linux64.tar.xz
+    sudo tar -xf "$ARQUIVO"-linux64.tar.xz
 
-    mv "$ARQUIVO" "$HOME/$ARQUIVO"
+    sudo mv "$ARQUIVO" "$HOME/$ARQUIVO"
 
     cd "$HOME/$ARQUIVO"
 
@@ -29,8 +31,8 @@ else
 	echo "$0: Programa Já Foi Instalado"
 fi 
 
-cd ..
-rm temp -r
+cd $ATUAL
+rm -rf $TEMP
 
 
 
