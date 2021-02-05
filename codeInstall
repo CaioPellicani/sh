@@ -11,9 +11,10 @@ else
 	echo "$0: Programa Já Foi Instalado"
 fi 
 
-${pack} MS-CEINTL.vscode-language-pack-pt-BR
+${pack} ms-ceintl.vscode-language-pack-pt-br
 ${pack} ms-vscode.cpptools
-${pack} mikhail-arkhipov.r
+${pack} ms-vscode.cmake-tools
+${pack} coenraads.bracket-pair-colorizer-2
 
 cd ..
 rm temp -r

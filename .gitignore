@@ -1,5 +1,5 @@
 .*
-.autosave
-.save
-.log
+*.autosave
+*.save
+*.log
 !/.gitignore
