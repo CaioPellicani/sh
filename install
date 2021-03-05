@@ -11,17 +11,18 @@ for arg in $@
 do 
     case $arg in 
 	    "dev")
-            echo "Modo Dev"
-		    ./codeInstall
-			./arduinoInstall
-		    ;;
+		echo "Modo Dev"
+    		./codeInstall
+		./arduinoInstall
+		./qtInstall
+	    ;;
 	    "r")
-		    echo "Modo R"
-           ./rInstall
-		    ;;
+		echo "Modo R"
+           	./rInstall
+	    ;;
         "snap")
-            echo "Modo Snap"
-            ./snapInstall
+            	echo "Modo Snap"
+            	./snapInstall
             ;;
 		*)
 			echo "Comando $arg não encontrado"

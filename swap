@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "vm.swappiness=10" > swap.conf
+
+sudo mv ./swap.conf /etc/sysctl.d/swap.conf
+
+sudo sysctl -p /etc/sysctl.conf
+
+sudo sysctl vm.swappiness=10
