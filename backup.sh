@@ -23,10 +23,6 @@ DRIVE=/media/$USER/$DRIVE_NAME
 
 ORIGIN_PATH="$HOME"
 BACKUP_PATH=$DRIVE/backup
-EX_FLAG="--exclude=Downloads"
-EX_FLAG+=" --exclude=.cache"
-EX_FLAG+=" --exclude=.local/share/tracker"
-EX_FLAG+=" --exclude=.local/share/Trash"
 
 $( Mount "$DRIVE_NAME" "$DRIVE" )
 PREV_MONT=$?
