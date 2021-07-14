@@ -27,6 +27,19 @@ if [ "$installed" = "" ]; then
     arduino-cli lib install "RTClib"
     arduino-cli update
     arduino-cli upgrade
+
+    echo "Deseja Cadastrar Usuário?(S/N)"
+    read result
+
+    if [ "${result^^}" == "S" ]
+    then
+        echo "Usuário: "
+        read USER
+
+        sudo adduser "$USER" dialout
+        sudo chmod a+rw /dev/ttyACM0
+    fi
+
 else
 	echo "$0: Programa Já Foi Instalado"
 fi 
