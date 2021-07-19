@@ -3,3 +3,6 @@
 *.save
 *.log
 !/.gitignore
+*old/
+*logs/
+*error/
