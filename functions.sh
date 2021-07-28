@@ -1,9 +1,9 @@
 #!/bin/sh
 
-installed(){
-    isInstalled=$(dpkg-query -l "$1" 2>/dev/null | grep "$1" )
-    isInstalled+=$(ls /bin | grep "$1" )
-    isInstalled+=$(ls /sbin | grep "$1" )   
+installed(){ local package=$1
+    isInstalled=$(dpkg-query -l "$package" 2>/dev/null | grep "$package" )
+    isInstalled+=$(ls /bin | grep "$package" )
+    isInstalled+=$(ls /sbin | grep "$package" )   
 
     if [[ "${isInstalled}" == "" ]]; then
         return 0
@@ -13,10 +13,10 @@ installed(){
 
 printDate(){ printf "\nDATE: %(%d/%h/%Y %T)T\n" $(date +%s) >> $1; }
 
-getStdErr(){
+getStdErr(){ local errDir=$1
     if [ ! "$(cat /tmp/stream)" == "" ]; then 
-        printDate $1
-        cat /tmp/stream >> $1
+        printDate $errDir
+        cat /tmp/stream >> $errDir
     fi
 }
 
@@ -28,19 +28,21 @@ updateRepo(){
     runScript "$UPDATE_CMD" ${LOG_DIR}/"update_log" ${ERROR_DIR}/"update_error"
 }
 
-runScript(){
-    printDate ${2}
-    $1 1>> ${2} 2> /tmp/stream
+runScript(){ local script=$1; local outDir=$2; local errDir=$3
+    printDate ${outDir}
+    $script 1>> ${outDir} 2> /tmp/stream
 
-    getStdErr ${3} 
+    getStdErr ${errDir} 
 }
 
-wget_dpkg(){
-    wget -O $TEMP_DIR/$1.deb $2
-    sudo dpkg -i $TEMP_DIR/$1.deb
+wget_dpkg(){ local package=$1; local url=$2
+    wget -O $TEMP_DIR/$package.deb $url
+    sudo dpkg -i $TEMP_DIR/$package.deb
 }
 
-addConfig(){ CONFIG_LIST[${#CONFIG_LIST[@]}]=$1; }
+addConfig(){ local package=$1
+    CONFIG_LIST[${#CONFIG_LIST[@]}]=$package; 
+}
 
 installPackages(){
     for i in ${PACKAGES[*]}; do
@@ -49,7 +51,7 @@ installPackages(){
         printf "Installing %s\n" ${i}
 
         FUNC_NAME=$( echo "${i}_install" | tr - _ )
-        runScript"${FUNC_NAME}" ${LOG_DIR}/${i}_log ${ERROR_DIR}/${i}_error
+        runScript "${FUNC_NAME}" ${LOG_DIR}/${i}_log ${ERROR_DIR}/${i}_error
     else
         printf "Package already installed: %s\n" $i 
     fi
