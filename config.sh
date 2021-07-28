@@ -15,7 +15,9 @@ BASIC=(
     numlockx \
     brave-browser \
     google-chrome-stable \
-    ttf-mscorefonts-installer
+    ttf-mscorefonts-installer \
+    teams \
+    gparted \
 )
 
 DESIGN=(
@@ -24,6 +26,8 @@ DESIGN=(
 )
 
 DEV=(
+    gdb \
+    valgrind \
     code \
     arduino-cli \
     #psql \

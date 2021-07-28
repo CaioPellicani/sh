@@ -4,9 +4,12 @@ source ${PROJ_DIR}/config.sh
 source ${PROJ_DIR}/functions.sh
 
 git_install(){  $INSTALL_CMD git; addConfig git; }
+gdb_install(){  $INSTALL_CMD gdb; }
+valgrind_install(){  $INSTALL_CMD valgrind; }
 htop_install(){ $INSTALL_CMD htop; }
 ttf_mscorefonts_installer(){ $INSTALL_CMD ttf-mscorefonts-installer; }
 numlockx_installer(){ $INSTALL_CMD numlockx; addConfig numlockx; }
+gparted_install(){  $INSTALL_CMD gparted; }
 
 brave_install(){ git 
     $INSTALL_CMD apt-transport-https curl gnupg
@@ -17,6 +20,10 @@ brave_install(){ git
 
 google_chrome_stable_install(){
     wget_dpkg chrome https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+}
+
+teams_isntall(){
+    wget_dpkg teams https://go.microsoft.com/fwlink/p/?LinkID=2112886&clcid=0x416&culture=pt-br&country=BR
 }
 
 inkscape_install(){ $INSTALL_CMD inkscape; }
