@@ -35,3 +35,7 @@ swappiness_config(){
         sudo sysctl vm.swappiness=$SWAP
     fi
 }
+
+postgresql_config(){
+    sudo /usr/pgadmin4/bin/setup-web.sh
+}

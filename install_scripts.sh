@@ -10,6 +10,8 @@ htop_install(){ $INSTALL_CMD htop; }
 ttf_mscorefonts_installer(){ $INSTALL_CMD ttf-mscorefonts-installer; }
 numlockx_installer(){ $INSTALL_CMD numlockx; addConfig numlockx; }
 gparted_install(){  $INSTALL_CMD gparted; }
+timeshift_install(){  $INSTALL_CMD timeshift; }
+neofetch_install(){  $INSTALL_CMD neofetch; }
 
 brave_install(){ git 
     $INSTALL_CMD apt-transport-https curl gnupg
@@ -38,4 +40,35 @@ arduino_cli_install(){
     curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
     sudo mv ./bin/arduino-cli /bin/arduino-cli
     rmdir ./bin
+}
+
+postgresql_install(){
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+    sudo curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+    sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+
+    $UPDATE_CMD update
+    $INSTALL_CMD postgresql pgadmin4-web 
+    addConfig postgresql;
+}
+
+virtualbox_install(){
+	wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
+	sudo apt-key add oracle_vbox_2016.asc
+
+	sudo echo "deb http://download.virtualbox.org/virtualbox/debian buster contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+
+	$UPDATE_CMD update
+	$INSTALL_CMD virtualbox-6.1
+}
+
+docker_install(){
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+        "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	$UPDATE_CMD update
+    $INSTALL_CMD docker-ce docker-ce-cli containerd.io
 }

@@ -18,6 +18,8 @@ BASIC=(
     ttf-mscorefonts-installer \
     teams \
     gparted \
+    timeshift \
+    neofetch \
 )
 
 DESIGN=(
@@ -30,8 +32,9 @@ DEV=(
     valgrind \
     code \
     arduino-cli \
-    #psql \
-    #pgadmin4 
+    postgresql \
+    virtualbox \
+    docker \
 )
 
 
