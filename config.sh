@@ -20,6 +20,7 @@ BASIC=(
     gparted \
     timeshift \
     neofetch \
+    flameshot \
 )
 
 DESIGN=(

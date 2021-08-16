@@ -12,6 +12,7 @@ numlockx_installer(){ $INSTALL_CMD numlockx; addConfig numlockx; }
 gparted_install(){  $INSTALL_CMD gparted; }
 timeshift_install(){  $INSTALL_CMD timeshift; }
 neofetch_install(){  $INSTALL_CMD neofetch; }
+flameshot(){  $INSTALL_CMD flameshot; }
 
 brave_install(){ git 
     $INSTALL_CMD apt-transport-https curl gnupg
@@ -66,9 +67,7 @@ virtualbox_install(){
 
 docker_install(){
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo \
-        "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	$UPDATE_CMD update
     $INSTALL_CMD docker-ce docker-ce-cli containerd.io
 }
