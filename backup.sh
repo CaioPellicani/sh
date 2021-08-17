@@ -1,40 +1,58 @@
 #!/bin/bash
 
-isMounted() { findmnt -rno TARGET "$1" >/dev/null;}
+isMounted() {
+    local _DRIVE_PATH="$1"    
+    findmnt -rno TARGET "$_DRIVE_PATH" >/dev/null;
+}
+
 Mount(){
-    if ! $( isMounted "$2" ); then
-        sudo mkdir "$2"
-        sudo mount -L "$1" "$2"
-        return 0
+    local _DRIVE_NAME="$1"
+    local _DRIVE_PATH="$2"
+    if ! $( isMounted "$_DRIVE_PATH" ); then
+        sudo mkdir "$_DRIVE_PATH"
+        sudo mount -L "$_DRIVE_NAME" "$_DRIVE_PATH"
+        return 1
     fi
-    return 1
+    return 0
 }
 
 Umount(){
-    if [[ $1 -eq 0 ]]; then
-        sudo umount "$2"
-        sudo rmdir "$2"
+    local _WAS_MOUNT=$1
+    local _DRIVE_PATH="$2"   
+    if [[ $_WAS_MOUNT -eq 0 ]]; then
+        sudo umount "$_DRIVE_PATH"
+        sudo rmdir "$_DRIVE_PATH"
     fi
 }
 
 DRIVE_NAME='Caio Pellicani'
-DRIVE=/media/$USER/$DRIVE_NAME
+DRIVE_PATH=/media/$USER/"$DRIVE_NAME"
 
 ORIGIN_PATH="$HOME"
-BACKUP_PATH=$DRIVE/backup
+BACKUP_PATH=$DRIVE_PATH/backup
 
-$( Mount "$DRIVE_NAME" "$DRIVE" )
-PREV_MONT=$?
+$( Mount "$DRIVE_NAME" "$DRIVE_PATH" )
+WAS_MOUNT=$? # the return of the func Mount
 
-if $( isMounted "$DRIVE" ); then
-        sudo rsync -a --progress --compress --delete \
-        --exclude=Downloads --exclude=.cache --exclude=.local/share/tracker \
-        --exclude=.local/share/Trash \
+if $( isMounted "$DRIVE_PATH" ); then
+        sudo rsync -a \
+        --progress \
+        --compress \
+        --delete \
+        --exclude=Downloads \
+        --exclude=.cache \
+        --exclude=cache \
+        --exclude=Cache \
+        --exclude=CacheStorage \
+        --exclude=Temp \
+        --exclude=temp \
+        --exclude=tracker \
+        --exclude=Trash \
         "$ORIGIN_PATH" "$BACKUP_PATH"
 else
     echo "Backup Drive not Mounted"
 fi
 
-Umount $PREV_MONT "$DRIVE"
+Umount $WAS_MOUNT "$DRIVE_PATH"
 
 
