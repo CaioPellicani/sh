@@ -59,7 +59,7 @@ virtualbox_install(){
 	wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
 	sudo apt-key add oracle_vbox_2016.asc
 
-	sudo echo "deb http://download.virtualbox.org/virtualbox/debian buster contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+	sudo echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
 	$UPDATE_CMD update
 	$INSTALL_CMD virtualbox-6.1
